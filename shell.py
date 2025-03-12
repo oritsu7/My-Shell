@@ -1,4 +1,5 @@
 import datetime
+import os
 
 # bool var to check if the command is valid
 is_command = False
@@ -24,5 +25,10 @@ while True:
         is_command = True
         print(f"{dt.day}-{dt.month}-{dt.year}")
 
+    if usinp == "cls":
+        is_command = True
+        os.system('cls')
+
+    # if user input does not contain any builtin commands this will be executed
     if not is_command:
         print(usinp + " : command not found")
