@@ -29,6 +29,13 @@ while True:
         is_command = True
         os.system('cls')
 
+    if usinp == "ls":
+        is_command = True
+        path = os.getcwd()
+        dir_list = os.listdir(path)
+        print(f"files and directories in {path}  :  ")
+        print(dir_list)
+
     # if user input does not contain any builtin commands this will be executed
     if not is_command:
         print(usinp + " : command not found")
