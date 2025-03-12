@@ -26,6 +26,10 @@ while True:
         is_command = True
         print(f"{dt.day}-{dt.month}-{dt.year}")
 
+    if usinp == "time":
+        is_command = True
+        print(f"{dt.hour}::{dt.minute}::{dt.second}")
+
     if usinp == "cls" or usinp == "clear":
         is_command = True
         os.system('cls')
