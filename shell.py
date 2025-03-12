@@ -1,5 +1,6 @@
 import datetime
 import os
+import socket
 
 # bool var to check if the command is valid
 is_command = False
@@ -25,7 +26,7 @@ while True:
         is_command = True
         print(f"{dt.day}-{dt.month}-{dt.year}")
 
-    if usinp == "cls":
+    if usinp == "cls" or usinp == "clear":
         is_command = True
         os.system('cls')
 
@@ -35,6 +36,13 @@ while True:
         dir_list = os.listdir(path)
         print(f"files and directories in {path}  :  ")
         print(dir_list)
+
+    if usinp == "hostname":
+        is_command = True
+        print(socket.gethostname())
+
+    
+
 
     # if user input does not contain any builtin commands this will be executed
     if not is_command:
