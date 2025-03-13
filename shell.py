@@ -59,7 +59,35 @@ while True:
             os.remove(filename)
         else:
             print("The file does not exist")
-    
+
+
+    if usinp[0:6] == "mkdir ":
+        is_command = True
+        dir_name = usinp[6:]
+
+        try:
+            os.mkdir(dir_name)
+            print(f"Directory {dir_name} created successfully")
+        except FileExistsError:
+            print(f"Directory with name {dir_name} alredy exist")
+        except PermissionError:
+            print(f"Permission denied : Unable to create {dir_name}")
+        except Exception as e:
+            print(f"An error occurred : {e}")
+
+    if usinp[0:6] == "rmdir ":
+        is_command = True
+        dir_name = usinp[6:]
+
+        try:
+            os.rmdir(dir_name)
+            print(f"{dir_name} deleted successfully")
+        except OSError as e:
+            print(e)
+            print(f"Directory '{dir_name}' can not be removed")
+        except:
+            print("Something went wrong!")
+
 
     if not is_command:
         try:
