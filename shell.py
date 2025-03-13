@@ -6,7 +6,7 @@ import socket
 while True:
     # bool var to check if the command is valid
     is_command = False
-    
+
     # gets the current date and time 
     dt = datetime.datetime.now()
 
@@ -45,6 +45,21 @@ while True:
     if usinp == "hostname":
         is_command = True
         print(socket.gethostname())
+
+    if usinp[0:6] == "touch ":
+        is_command = True
+        filename = usinp[6:]
+        f = open(filename, "a")
+        f.close()
+
+    if usinp[0:3] == "rm ":
+        is_command = True
+        filename = usinp[3:]
+        if os.path.exists(filename):
+            os.remove(filename)
+        else:
+            print("The file does not exist")
+    
 
     if not is_command:
         try:
