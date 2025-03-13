@@ -66,6 +66,9 @@ while True:
             if all(c.isdigit() or c in "+-*/%()" for c in usinp.replace(" ", "")):
                 print(eval(usinp))
                 is_command = True
+        except ZeroDivisionError:
+            print("Zero division error!")
+            is_command = True
         except:
             pass
     
