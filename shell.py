@@ -46,12 +46,14 @@ while True:
         is_command = True
         print(socket.gethostname())
 
+    # create empty file 
     if usinp[0:6] == "touch ":
         is_command = True
         filename = usinp[6:]
         f = open(filename, "a")
         f.close()
 
+    # remove file
     if usinp[0:3] == "rm ":
         is_command = True
         filename = usinp[3:]
@@ -59,6 +61,14 @@ while True:
             os.remove(filename)
         else:
             print("The file does not exist")
+
+    # reads a file 
+    if usinp[0:4] == "cat ":
+        is_command = True
+        filename = usinp[4:]
+        f = open(filename, "r")
+        print(f.read())
+        f.close()
 
 
     if usinp[0:6] == "mkdir ":
@@ -88,9 +98,22 @@ while True:
         except:
             print("Something went wrong!")
 
+    if usinp[0:3] == "cd ":
+        is_command = True
+        path = usinp[3:]
+
+        try:
+            os.chdir(path)
+        except OSError as e:
+            print(e)
+        except:
+            print("Something went wrong!")
+
+
 
     if not is_command:
         try:
+            # removes all the space and checks if there is any number or operaters
             if all(c.isdigit() or c in "+-*/%()" for c in usinp.replace(" ", "")):
                 print(eval(usinp))
                 is_command = True
