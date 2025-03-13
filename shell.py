@@ -2,10 +2,11 @@ import datetime
 import os
 import socket
 
-# bool var to check if the command is valid
-is_command = False
 
 while True:
+    # bool var to check if the command is valid
+    is_command = False
+    
     # gets the current date and time 
     dt = datetime.datetime.now()
 
@@ -45,6 +46,13 @@ while True:
         is_command = True
         print(socket.gethostname())
 
+    if not is_command:
+        try:
+            if all(c.isdigit() or c in "+-*/%()" for c in usinp.replace(" ", "")):
+                print(eval(usinp))
+                is_command = True
+        except:
+            pass
     
 
 
